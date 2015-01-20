@@ -55,7 +55,6 @@ int connect_to_xtag(char* HOST_NAME)
         close(sfd);
     }
     DBG(printf("Got socket file descriptor.\n");)
-    printf("Test: %s\n", ETHER_XTAG_PORT);  
 
     if (rp == NULL)
     {               

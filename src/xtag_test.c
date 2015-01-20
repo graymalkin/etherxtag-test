@@ -170,7 +170,6 @@ int xtag_test_device_lock_cmd_packet()
 }
 
 #define BATCH_TEST_COUNT 100
-#define CLOCKTYPE CLOCK_MONOTONIC
 int xtag_test_send_large_batch()
 {
     dbg_cmd_type_read_mem dbg_cmd = {

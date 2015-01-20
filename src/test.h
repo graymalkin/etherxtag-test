@@ -2,6 +2,7 @@
 #define PASS 1
 #define FAIL 0
 #define TEST_NAME_PREFIX "  - "
+#define CLOCKTYPE CLOCK_MONOTONIC
 
 /**
  * Unit test define. You need to provide local variables `count` and `tot`
@@ -17,8 +18,8 @@
 // Print test results.
 #define PRINT_TEST_RESULTS                              \
     printf("\n==================\n");                   \
-    printf("Passed Tests  : %d\n", count);              \
-    printf("Total Tests   : %d\n", tot);
+    printf("Passed Tests  : %2d\n", count);              \
+    printf("Total Tests   : %2d\n\n\n", tot);
 
 extern int quiet_mode;
 extern int no_spinner;
