@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
     if(!valid_opts)
     {
         help(argv);
-        exit(E_PRINT_HELP);
+        exit(E_INVALID_OPTIONS);
     }
 
     if(xtag_enabled)
