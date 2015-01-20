@@ -4,6 +4,7 @@
 int xscope_test_all();
 int xscope_test_connect();
 int xscope_test_rate();
+int xscope_packet_loss();
 int xscope_close_connection() ;
 
 typedef struct xscope_cmd {

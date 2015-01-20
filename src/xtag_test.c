@@ -169,7 +169,6 @@ int xtag_test_device_lock_cmd_packet()
     return FAIL;
 }
 
-#define BATCH_TEST_COUNT 100
 int xtag_test_send_large_batch()
 {
     dbg_cmd_type_read_mem dbg_cmd = {
@@ -194,7 +193,7 @@ int xtag_test_send_large_batch()
     unsigned int buffer[MAX_DBG_CMD_LEN] = {0};
     int sentCount = 0;
     for(sentCount = 0; 
-        sentCount < BATCH_TEST_COUNT && success == PASS; 
+        sentCount < *xtag_count && success == PASS; 
         sentCount++) 
     {
         // usleep(40000);
@@ -203,7 +202,7 @@ int xtag_test_send_large_batch()
         if(!no_spinner)
         {
             printf("\r" TEST_NAME_PREFIX "Send batch data :: [%.2f%% %s]", 
-                ((float)sentCount / BATCH_TEST_COUNT) * 100, 
+                ((float)sentCount / *xtag_count) * 100, 
                 spinner[(sentCount / 250) % 8]);
             fflush(stdout);
         }

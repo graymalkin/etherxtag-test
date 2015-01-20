@@ -21,8 +21,14 @@
     printf("Passed Tests  : %2d\n", count);              \
     printf("Total Tests   : %2d\n\n\n", tot);
 
+extern int* xtag_count;
+extern int* xscope_count;
+
 extern int quiet_mode;
 extern int no_spinner;
+extern int xtag_enabled;
+extern int xscope_enabled;
+
 
 #ifndef __test_h_s
 #define __test_h_
