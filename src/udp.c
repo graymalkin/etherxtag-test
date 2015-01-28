@@ -56,7 +56,7 @@ void recv_from_xscope(void *buffer, unsigned int len)
 
 void send_to_xscope(void *buffer, unsigned int len)
 {
-    if(sendto(sfd, buffer, len, 0, (struct sockaddr *) &udp_socket, sizeof(udp_socket)) == -1)
+    if(sendto(sfd, buffer, len, 0, (struct sockaddr *) &udp_socket, sizeof(udp_socket)) < 0)
     {
         fprintf(stderr, ERROR_MESSAGES[E_CONNECTION_TIMEOUT], XSCOPE_MAX_TTL);
         exit(E_CONNECTION_TIMEOUT);
