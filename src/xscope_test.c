@@ -48,7 +48,7 @@ int xscope_test_rate()
     	// Print status
         if(!no_spinner)
         {
-            printf("\r" TEST_NAME_PREFIX "Testing XScope data-rate :: [%.2f%% %s]", 
+            printf("\r" TEST_NAME_PREFIX "Testing XScope data-rate :: [%2.2f%% %s]", 
                 ((float)sentCount / *xscope_count) * 100, 
                 spinner[(sentCount / 2000) % 8]);
             fflush(stdout);
@@ -60,14 +60,13 @@ int xscope_test_rate()
     double elaps_s = difftime(tsf.tv_sec, tsi.tv_sec);
     long elaps_ns = tsf.tv_nsec - tsi.tv_nsec;
     int bytesSent = sentCount * PACKET_SIZE;
-    float bytesPerS = (bytesSent/((double)(elaps_s + ((double)elaps_ns) / 1.0e9))) / 1000;
+    float mBytesPerS = (bytesSent/((double)(elaps_s + ((double)elaps_ns) / 1.0e9))) / 1000000;
 
     char string[100] = {0};
     sprintf(string, 
-        "Testing XScope data-rate [%.2f kB/s over %.2fs]    ", 
-        bytesPerS, (double)(elaps_s + ((double)elaps_ns) / 1.0e9));
+        "Testing XScope data-rate [%2.2f MB/s over %.2fs]    ", 
+        mBytesPerS, (double)(elaps_s + ((double)elaps_ns) / 1.0e9));
     printf("\r" TEST_NAME_PREFIX "%-60s :: ", string);
-
 
 	return PASS;
 }
@@ -84,7 +83,7 @@ int xscope_packet_loss()
         // Print status
         if(!no_spinner)
         {
-            printf("\r" TEST_NAME_PREFIX "Testing XScope packet loss :: [%.2f%% %s]", 
+            printf("\r" TEST_NAME_PREFIX "Testing XScope packet loss :: [%2.2f%% %s]", 
                 ((float)sentCount / *xscope_count) * 100, 
                 spinner[(sentCount / 2000) % 8]);
             fflush(stdout);
@@ -97,7 +96,7 @@ int xscope_packet_loss()
 
     char string[100] = {0};
     sprintf(string, 
-        "Testing XScope packet loss [%d lost (%.2f%%)]    ", 
+        "Testing XScope packet loss [%d lost (%2.2f%%)]    ", 
         lost_packets, (double)((double)((double)lost_packets / *xscope_count)*100));
     printf("\r" TEST_NAME_PREFIX "%-60s :: ", string);
 

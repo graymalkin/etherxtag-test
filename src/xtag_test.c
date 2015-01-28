@@ -201,7 +201,7 @@ int xtag_test_send_large_batch()
         // Print status
         if(!no_spinner)
         {
-            printf("\r" TEST_NAME_PREFIX "Send batch data :: [%.2f%% %s]", 
+            printf("\r" TEST_NAME_PREFIX "Send batch data :: [%2.2f%% %s]", 
                 ((float)sentCount / *xtag_count) * 100, 
                 spinner[(sentCount / 250) % 8]);
             fflush(stdout);
@@ -223,7 +223,7 @@ int xtag_test_send_large_batch()
 
     char string[100] = {0};
     sprintf(string, 
-        "Send batch data [%.2f kB/s over %.2fs]    ", 
+        "Send batch data [%2.2f kB/s over %2.2fs]    ", 
         bytesPerS, (double)(elaps_s + ((double)elaps_ns) / 1.0e9));
     printf("\r" TEST_NAME_PREFIX "%-60s :: ", string);
     return PASS;

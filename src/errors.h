@@ -23,7 +23,8 @@ static char * ERROR_MESSAGES[ERROR_COUNT] = {
 	"Help.\n",
 
 	// E_INVALID_OPTIONS
-	"Invalid command line options.\n",
+	"Invalid command line options. See `%s --help' for more information.\n"
+	"The program will now exit.\n",
 
 	// E_FIND_HOST
 	"Error connecting to %s at getaddrinfo: %s.\n"

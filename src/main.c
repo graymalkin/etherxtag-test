@@ -15,10 +15,10 @@
 int sfd;
 int quiet_mode, no_spinner;
 int xtag_enabled = 1, xscope_enabled = 1;
+
 int batch_count = 10000;
 int *xscope_count = &batch_count;
 int *xtag_count = &batch_count;
-
 
 char* HOST_NAME;
 
@@ -79,12 +79,12 @@ int main(int argc, char* argv[]) {
             continue;
         }
         if(strstr(argv[i], "-h") || strstr(argv[i], "--help"))
-        {            
+        {
             help(argv);
             exit(E_PRINT_HELP);
         }
         if(strstr(argv[i], "-v") || strstr(argv[i], "--version"))
-        {            
+        {
             printf("EtherXTag Test Version: " VERSION "\n");
             exit(NO_ERROR);
         }
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
     }
     if(!valid_opts)
     {
-        help(argv);
+        fprintf(stderr, ERROR_MESSAGES[E_INVALID_OPTIONS], argv[0]);
         exit(E_INVALID_OPTIONS);
     }
 
@@ -120,33 +120,46 @@ int main(int argc, char* argv[]) {
     return NO_ERROR;
 }
 
+// For some reason GCC incorrectly has issue with the %1$s format...
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat"
 void help(char* argv[])
 {
-    // For some reason GCC incorrectly has issue with the %1$s format...
-    printf("Usage: %s HOST [OPTION...]n"
+    printf("Usage: %s HOST [OPTION...]\n"
            "\n"
            "  -h,   --help         Show this help and exit\n"
            "  -ns,  --no-spinner   Disable the progress spinner\n"
-           "  -q,   --quiet        Quiet mode: disable printing of mismatch data\n"
            "  -nxt, --no-xtag      Disable XTAG Testing\n"
            "  -nxs, --no-xscope    Disable XScope Testing\n"
+           "  -q,   --quiet        Quiet mode: disable printing of mismatch data\n"
+           "  -v,   --version      Print the version and exit\n"
            "  --default-count=<n>  Send <n> packets in each of the batch tests\n"
            "                       (test specific options override this value)\n"
            "  --xscope-count=<n>   Send <n> packets in the XScope batch tests\n"
            "  --xtag-count=<n>     Send <n> packets in the XTAG batch tests\n"
-           "  -v,   --version      Print the version and exit"
+           "\n"
            "\n"
            "Examples:\n"
+           "\n"
            "  Test the device at etherxtag.local quietly:\n"
            "    %1$s etherxtag.local -q\n"
+           "\n"
            "  Suitable for testing: only print test results, no spinner:\n"
            "    %1$s etherxtag.local -ns -q\n"
+           "\n"
            "  Test only the XScope portion of the device:\n"
            "    %1$s etherxtag.local -nxt\n"
-           "  Run a full, long test\n"
+           "\n"
+           "  Run a full, long test:\n"
            "    %1$s etherxtag.local --default-count=10000\n"
+           "\n"
+           "\n"
+           "More Information:\n"
+           "\n"
+           "  The program does a variety of tests on the host device. There\n"
+           "  are some flags to control them, as specified above. By default\n"
+           "  the application will print verbose output and has a run time of\n"
+           "  ~10s\n"
            "\n", argv[0]);
 }
 #pragma GCC diagnostic pop
