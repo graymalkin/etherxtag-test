@@ -79,6 +79,7 @@ int xtag_test_connect()
         if(memcmp(response->data, expected, MAX_DBG_CMD_LEN) == 0)
             return PASS;
 
+    // Quiet mode has been set, return before printing the failure reason
     if(quiet_mode)
         return FAIL;
 
@@ -120,6 +121,7 @@ int xtag_test_extract_cmd_packet()
     if(response->type == DBG_CMD_WRITE_MEM_ACK)
         return PASS;
 
+    // Quiet mode has been set, return before printing the failure reason
     if(quiet_mode)
         return FAIL;
 
@@ -159,6 +161,7 @@ int xtag_test_device_lock_cmd_packet()
         if(memcmp(response->data, dbg_packet.data, sizeof(dbg_cmd_type_etherxtag_lock)) == 0)
             return PASS;
 
+    // Quiet mode has been set, return before printing the failure reason
     if(quiet_mode)
         return FAIL;
 
@@ -257,6 +260,7 @@ int xtag_test_get_jtag_chain_info()
     if(memcmp(response->data, expected, MAX_DBG_CMD_LEN) == 0)
         return PASS;
 
+    // Quiet mode has been set, return before printing the failure reason
     if(quiet_mode)
         return FAIL;
 
