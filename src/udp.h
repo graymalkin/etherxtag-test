@@ -1,7 +1,7 @@
 #ifndef __udp_h_
 #define __udp_h_
 
-#define XSCOPE_MAX_TTL 5
+#define XSCOPE_MAX_TTL 60
 #define ETHER_XSCOPE_PORT "1338" 
 #define ETHER_XSCOPE_PORT_NUM 1338
 
